@@ -4,7 +4,7 @@ public class Student {
     private double score;
     private boolean enrolled;
 
-    public Student(String name, int age, double score) {
+    public Student(String name, int age, double score, boolean enrolled) {
         this.name = name;
         this.age = age;
         this.score = score;

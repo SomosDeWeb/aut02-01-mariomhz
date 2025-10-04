@@ -46,7 +46,17 @@ public class Main{
         System.out.print("Enter average score: ");
         double score = Double.parseDouble(sc.nextLine());
 
-        students.add(new Student(name, age, score));
+        boolean enrolled = false;
+        System.out.println("Is the student enrolled? (Y/N) ");
+        String answer = sc.nextLine();
+
+        if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes")) {
+            enrolled = true;
+        } else if (!(answer.equalsIgnoreCase("n") || answer.equalsIgnoreCase("no"))) {
+            System.out.println("Please enter a valid Y/N answer, defaulting to 'not enrolled'...");
+        }
+
+        students.add(new Student(name, age, score, enrolled));
     }
 
     private static void listStudents() {
