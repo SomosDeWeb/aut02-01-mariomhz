@@ -47,14 +47,20 @@ public class Main{
         double score = Double.parseDouble(sc.nextLine());
 
         boolean enrolled = false;
-        System.out.println("Is the student enrolled? (Y/N) ");
-        String answer = sc.nextLine();
+        do {
+            System.out.print("Is the student enrolled? (Y/N): ");
+            String answer = sc.nextLine().trim();
 
-        if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes")) {
-            enrolled = true;
-        } else if (!(answer.equalsIgnoreCase("n") || answer.equalsIgnoreCase("no"))) {
-            System.out.println("Please enter a valid Y/N answer, defaulting to 'not enrolled'...");
-        }
+            if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes")) {
+                enrolled = true;
+                break;
+            } else if (answer.equalsIgnoreCase("n") || answer.equalsIgnoreCase("no")) {
+                enrolled = false;
+                break;
+            } else {
+                System.out.println("invalid input, try again");
+            }
+        } while (true);
 
         students.add(new Student(name, age, score, enrolled));
     }
@@ -113,8 +119,8 @@ public class Main{
                 if (s.getScore() > best.getScore()) {
                     best = s;
                 }
-                System.out.println("The best student is: " + s);
             }
+            System.out.println("The best student is: " + best);
         }
     }
 }

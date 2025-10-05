@@ -8,6 +8,7 @@ public class Student {
         this.name = name;
         this.age = age;
         this.score = score;
+        this.enrolled = enrolled;
     }
 
     public String getName() {
