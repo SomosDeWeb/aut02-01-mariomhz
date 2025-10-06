@@ -52,8 +52,17 @@ public class Main{
         System.out.print("Enter name: ");
         String name = sc.nextLine();
 
-        System.out.print("Enter age: ");
-        int age = Integer.parseInt(sc.nextLine());
+        int age = -1;
+        while (true) {
+            System.out.print("Enter age: ");
+            age = Integer.parseInt(sc.nextLine());
+            if (age > 0 && age <= 200) {
+                break;
+            } else {
+                System.out.println("Invalid age. Try again.");
+            }
+        }
+
 
         System.out.print("Enter average score: ");
         double score = Double.parseDouble(sc.nextLine());
@@ -78,8 +87,8 @@ public class Main{
     }
 
     private static void listStudents() {
-        if (students.size() == 0) {
-            System.out.println("No students registered yet.");
+        if (students.isEmpty()) {
+            System.out.println("\nNo students registered yet.");
         } else {
             System.out.println("Student list: ");
             for (Student s : students) {
@@ -89,8 +98,8 @@ public class Main{
     }
 
     private static void findStudent(Scanner sc) {
-        if (students.size() == 0) {
-            System.out.println("Error, student list is empty.");
+        if (students.isEmpty()) {
+            System.out.println("\nError, student list is empty.");
         } else {
             if (students.size() == 0) {
                 System.out.println("Error, student list is empty.");
@@ -108,8 +117,8 @@ public class Main{
     }
 
     private static void calculateAvg() {
-        if (students.size() == 0) {
-            System.out.println("Error, student list is empty.");
+        if (students.isEmpty()) {
+            System.out.println("\nError, student list is empty.");
         } else {
             double total = 0;
             for (Student s : students) {
@@ -123,8 +132,8 @@ public class Main{
     }
 
     private static void showBestStudent() {
-        if (students.size() == 0) {
-            System.out.println("Error, student list is empty.");
+        if (students.isEmpty()) {
+            System.out.println("\nError, student list is empty.");
         } else {
             Student best = students.get(0);
             for (Student s : students) {
