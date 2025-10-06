@@ -6,7 +6,7 @@ public class Main{
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int option = 0;
+        int option;
 
         do {
             System.out.println("\n===== Student Manager =====");
@@ -17,11 +17,20 @@ public class Main{
             System.out.println("5. Show best student");
             System.out.println("6. Exit");
 
-            try {
+            while (true) {
                 System.out.print("Select an option (1 - 6): ");
-                option = Integer.parseInt(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input, try again.");
+                String input = sc.nextLine();
+
+                try {
+                    option = Integer.parseInt(input);
+                    if (option >= 1 && option <= 6) {
+                        break;
+                    } else {
+                        System.out.println("Error: Please enter a number between 1 and 6.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: Invalid input. Please enter a number.");
+                }
             }
 
             switch(option) {
@@ -30,11 +39,14 @@ public class Main{
                 case 3 -> findStudent(sc);
                 case 4 -> calculateAvg();
                 case 5 -> showBestStudent();
+                case 6 -> System.out.println("Exiting program...");
             }
+
         } while (option != 6);
 
         sc.close();
     }
+
 
     private static void addStudent(Scanner sc) {
         System.out.print("Enter name: ");
@@ -101,7 +113,7 @@ public class Main{
         } else {
             double total = 0;
             for (Student s : students) {
-                total = s.getScore();
+                total += s.getScore();
             }
 
             double average = total / students.size();
