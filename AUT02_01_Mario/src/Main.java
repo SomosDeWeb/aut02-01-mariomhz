@@ -49,8 +49,16 @@ public class Main{
 
 
     private static void addStudent(Scanner sc) {
-        System.out.print("Enter name: ");
-        String name = sc.nextLine();
+        String name = "";
+        while (true) {
+            System.out.println("Enter name: ");
+            name = sc.nextLine();
+            if (!name.isEmpty()) {
+                break;
+            } else {
+                System.out.println("Invalid name, try again.");
+            }
+        }
 
         int age = -1;
         while (true) {
