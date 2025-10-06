@@ -9,13 +9,15 @@ public class Main{
         int option;
 
         do {
-            System.out.println("\n===== Student Manager =====");
-            System.out.println("1. Add student");
-            System.out.println("2. List students");
-            System.out.println("3. Find student by name");
-            System.out.println("4. Calculate average of all scores");
-            System.out.println("5. Show best student");
-            System.out.println("6. Exit");
+            System.out.println("""
+        ===== Student Manager =====
+        1. Add student
+        2. List students
+        3. Find student by name
+        4. Calculate average of all scores
+        5. Show best student
+        6. Exit
+        """);
 
             while (true) {
                 System.out.print("Select an option (1 - 6): ");
@@ -51,7 +53,7 @@ public class Main{
     private static void addStudent(Scanner sc) {
         String name = "";
         while (true) {
-            System.out.println("Enter name: ");
+            System.out.print("Enter name: ");
             name = sc.nextLine();
             if (!name.isEmpty()) {
                 break;
@@ -108,19 +110,23 @@ public class Main{
     private static void findStudent(Scanner sc) {
         if (students.isEmpty()) {
             System.out.println("\nError, student list is empty.");
-        } else {
-            if (students.size() == 0) {
-                System.out.println("Error, student list is empty.");
-            } else {
-                double total = 0;
-                for (Student s : students) {
-                    total = s.getScore();
-                }
+            return;
+        }
 
-                double average = total / students.size();
+        System.out.print("Enter student name to search: ");
+        String searchName = sc.nextLine().trim();
 
-                System.out.println("Average score is: " + average);
+        boolean found = false;
+        for (Student s : students) {
+            if (s.getName().equalsIgnoreCase(searchName)) {
+                System.out.println("Student found: " + s);
+                found = true;
+                break;
             }
+        }
+
+        if (!found) {
+            System.out.println("Student not found.");
         }
     }
 
